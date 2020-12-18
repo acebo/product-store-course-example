@@ -1,19 +1,27 @@
 import React from 'react';
 import './assets/style.css';
-import data from './data.json'
-
-import ProductItem from "./components/ProductItem";
+import 'antd/dist/antd.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom"
+import ProductPage from "./pages/Product";
+import CartPage from "./pages/Cart";
 
 function App() {
   return (
     <div className="App">
-      <div className="product-list">
-        {
-          data.products.map(product => (
-            <ProductItem key={product.id} { ...product } />
-          ))
-        }
-      </div>
+      <Router>
+        <Switch>
+          <Route path="/cart">
+            <CartPage />
+          </Route>
+          <Route path="/">
+            <ProductPage />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }

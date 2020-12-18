@@ -14,7 +14,7 @@ const ProductItem = (props) => {
 
   return (
     <div className="product-container">
-      <div className="product-card" ref={card} onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
+      <div className={`product-card ${ props.stock === 0 ? 'product-out-of-stock' : '' }`} ref={card} onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
         <img src={ shoeImg } alt=""/>
         <div className="add-to-cart-button">Add to Cart</div>
         <div className="stats">

@@ -7,7 +7,7 @@
       "description": "Pastel Blue Vans Old School",
       "sizes": ["39", "40", "41", "42", "43"],
       "colors": ["blue", "red", "white", "green"],
-      "stock": 2
+      "stock": 0
     },
     {
       "id": 2,
@@ -16,7 +16,7 @@
       "description": "Pastel Blue Vans Old School",
       "sizes": ["39", "40", "41", "42", "43"],
       "colors": ["blue", "red", "white", "green"],
-      "stock": 4
+      "stock": 0
     },
     {
       "id": 3,

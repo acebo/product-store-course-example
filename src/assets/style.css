@@ -5,7 +5,6 @@
 }
 
 body {
-  background: #eaebec;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -184,4 +183,64 @@ div.c-white span{
   width:14px;
   height:14px;
   border:1px solid #e8e9eb;
+}
+.app-content {
+  margin: 130px auto;
+  width: calc(340px * 3);
+}
+
+.app-header {
+  position: fixed;
+  height: 130px;
+  width: 100%;
+  z-index: 1;
+  top: 0;
+  background: white;
+}
+
+.app-header .header-content {
+  margin: 0 auto;
+  padding: 20px 10px 10px;
+  width: calc(340px * 3);
+  position: relative;
+}
+
+.app-header .cart-icon {
+  position: absolute;
+  top: 30px;
+  right: 5px;
+}
+
+.app-header .cart-quantity {
+  position: relative;
+  top: 5px;
+  right: 5px;
+  background-color: #61dafb;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: -1px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.field {
+  width: 100%;
+  min-height: 30px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.cart-header {
+  align-items: center;
+  display: flex;
+  height: 100%;
+}
+.cart-icon .anticon {
+  font-size: 32px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
