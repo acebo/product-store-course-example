@@ -1,19 +1,41 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Typography, Radio } from "antd";
-import ProductItem from "../components/ProductItem";
-import data from "../data.json";
 import { ShoppingCartOutlined } from '@ant-design/icons'
 import { Link } from "react-router-dom"
+import axios from 'axios'
+
+import ProductItem from "../components/ProductItem";
+import ProductModal from '../components/ProductModal'
 
 const { Title } = Typography;
 
-const Product = () => {
+const Product = ({ cart, setCart }) => {
   const [selectedFilter, setSelectedFilter] = useState('select-all')
+  const [selectedProduct, setSelectedProduct] = useState(undefined)
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    axios.get('https://basic-react-8c559.web.app/static/data.json')
+    .then(({ data }) => setProducts(data.products))
+  }, [])
+
+  const addProductToCart = (product) => {
+    setCart([
+      ...cart,
+      product
+    ])
+    setSelectedProduct(undefined)
+  }
+
   const onFilterChange = event => setSelectedFilter(event.target.value)
-  let filteredProduct = data.products
+  let filteredProduct = products
 
   if(selectedFilter === 'in-stock') {
-    filteredProduct = data.products.filter(product => product.stock !== 0)
+    filteredProduct = products.filter(product => product.stock !== 0)
+  }
+
+  const sumOfQuantity = () => {
+    return cart.reduce((acc, item) => acc + item.quantity, 0)
   }
 
   return (
@@ -24,6 +46,7 @@ const Product = () => {
           <div className={'cart-icon'}>
             <Link to={'/cart'}>
               <ShoppingCartOutlined />
+              <div className={'cart-quantity'}>{ sumOfQuantity() }</div>
             </Link>
           </div>
           <Radio.Group
@@ -39,11 +62,18 @@ const Product = () => {
         <div className="product-list">
           {
             filteredProduct.map(product => (
-              <ProductItem key={product.id} { ...product } />
+              <ProductItem key={product.id} item={product} onAddItem={setSelectedProduct} />
             ))
           }
         </div>
       </div>
+      {
+        selectedProduct && <ProductModal
+          item={selectedProduct}
+          onOk={addProductToCart}
+          onCancel={() => setSelectedProduct(undefined)}
+        />
+      }
     </>
   )
 }

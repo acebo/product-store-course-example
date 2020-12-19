@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './assets/style.css';
 import 'antd/dist/antd.css';
 import {
@@ -10,15 +10,19 @@ import ProductPage from "./pages/Product";
 import CartPage from "./pages/Cart";
 
 function App() {
+  const [cart, setCart] = useState([])
+
+  console.log(cart)
+
   return (
     <div className="App">
       <Router>
         <Switch>
           <Route path="/cart">
-            <CartPage />
+            <CartPage cart={cart} />
           </Route>
           <Route path="/">
-            <ProductPage />
+            <ProductPage cart={cart} setCart={setCart} />
           </Route>
         </Switch>
       </Router>
